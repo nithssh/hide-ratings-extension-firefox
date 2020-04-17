@@ -9,19 +9,19 @@
         'letterboxd': false
     };
 
-    // Checks if chrome storage is defined
-    function hasChromeStorage() {
+    // Checks if browser storage is defined
+    function hasbrowserStorage() {
         return (
-            typeof chrome !== 'undefined' &&
-            typeof chrome.storage !== 'undefined' &&
-            typeof chrome.storage.sync !== 'undefined'
+            typeof browser !== 'undefined' &&
+            typeof browser.storage !== 'undefined' &&
+            typeof browser.storage.sync !== 'undefined'
         );
     }
 
-    // Saves toggle values in chrome.storage
+    // Saves toggle values in browser.storage
     function saveToggleValues() {
-        if (!hasChromeStorage()) {
-            console.warn('Chrome storage is not available.')
+        if (!hasbrowserStorage()) {
+            console.warn('browser storage is not available.')
             return;
         }
 
@@ -30,12 +30,17 @@
             data[name] = !document.getElementById(name + '_toggle').classList.contains('active');
         }
 
-        chrome.storage.sync.set(data, function () {
-            chrome.tabs.getSelected(function (tab) {
-                if (tab && tab.url) {
-                    chrome.tabs.sendMessage(tab.id, data);
+        browser.storage.sync.set(data, function() 
+        {
+            
+            browser.tabs.getSelected(function (tab) 
+                {
+                    if (tab && tab.url) 
+                    {
+                        browser.tabs.sendMessage(tab.id, data);
+                    }
                 }
-            });
+            );
 
             // show status box
             var statusBox = document.getElementById('status_box');
@@ -49,16 +54,16 @@
         });
     }
 
-    // Restores toggle values from chrome.storage
+    // Restores toggle values from browser.storage
     function restoreToggleValues() {
         var keys = Object.keys(sourcesDefault);
 
-        if (!hasChromeStorage()) {
-            console.warn('Chrome storage is not available.')
+        if (!hasbrowserStorage()) {
+            console.warn('browser storage is not available.')
             return;
         }
 
-        chrome.storage.sync.get(keys, function (items) {
+        browser.storage.sync.get(keys, function (items) {
             var values = Object.assign({}, sourcesDefault, items);
 
             for (let i in keys) {
