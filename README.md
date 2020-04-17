@@ -1,7 +1,7 @@
 Hide ratings
 ======================================================================
 
-Simple extension that will prevent you from other people influence by hiding the rating bars from **Google**, **IMDB**, **Goodreads**, **MyAnimeList** and **Letterboxd** search results, lists and reviews.
+Prevents you from being influenced by others by hiding the rating bars from Google Knowledge panels, IMDB, Goodreads, MyAnimeList and Letterboxd.
 
 #### Installation
 
