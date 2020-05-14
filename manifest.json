@@ -1,19 +1,27 @@
 {
     "manifest_version": 2,
     "name": "Hide ratings (IMDB,Goodreads,MyAnimeList,...)",
-    "description": "Prevents you from other people influence by hiding the rating bars from IMDB, Goodreads, MyAnimeList and Letterboxd.",
-    "version": "1.6.1",
+    "description": "Prevents you from being influenced by others by hiding the rating bars from IMDB, Goodreads, MyAnimeList and Letterboxd.",
+    "version": "1.6.0f",
+
     "browser_action": {
         "default_icon": "images/icon64.png",
         "default_popup": "options.html"
     },
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "firefox-ext@hide-rating"
+        }
+    },
     "icons": {
-        "16":  "images/icon16.png",
-        "32":  "images/icon32.png",
-        "64":  "images/icon64.png",
+        "16": "images/icon16.png",
+        "32": "images/icon32.png",
+        "64": "images/icon64.png",
         "128": "images/icon128.png"
     },
-    "options_page": "options.html",
+    "options_ui": {
+        "page": "options.html"
+      },
     "content_scripts": [
         {
             "matches": [
@@ -205,29 +213,64 @@
                 "*://www.google.co.zm/search*",
                 "*://www.google.co.zw/search*"
             ],
-            "js": ["js/common.js", "js/google.js"],
-            "css": ["css/google.css"],
+
+            "js": [
+                "js/common.js",
+                "js/google.js"
+            ],
+            "css": [
+                "css/google.css"
+            ],
+
             "run_at": "document_end"
         },
         {
-            "matches": ["*://*.imdb.com/*"],
-            "js": ["js/common.js", "js/imdb.js"],
-            "css": ["css/imdb.css"]
+            "matches": [
+                "*://*.imdb.com/*"
+            ],
+            "js": [
+                "js/common.js",
+                "js/imdb.js"
+            ],
+            "css": [
+                "css/imdb.css"
+            ]
         },
         {
-            "matches": ["*://*.myanimelist.net/*"],
-            "js": ["js/common.js", "js/mal.js"],
-            "css": ["css/mal.css"]
+            "matches": [
+                "*://*.myanimelist.net/*"
+            ],
+            "js": [
+                "js/common.js",
+                "js/mal.js"
+            ],
+            "css": [
+                "css/mal.css"
+            ]
         },
         {
-            "matches": ["*://*.goodreads.com/*"],
-            "js": ["js/common.js", "js/goodreads.js"],
-            "css": ["css/goodreads.css"]
+            "matches": [
+                "*://*.goodreads.com/*"
+            ],
+            "js": [
+                "js/common.js",
+                "js/goodreads.js"
+            ],
+            "css": [
+                "css/goodreads.css"
+            ]
         },
         {
-            "matches": ["*://*.letterboxd.com/*"],
-            "js": ["js/common.js", "js/letterboxd.js"],
-            "css": ["css/letterboxd.css"]
+            "matches": [
+                "*://*.letterboxd.com/*"
+            ],
+            "js": [
+                "js/common.js",
+                "js/letterboxd.js"
+            ],
+            "css": [
+                "css/letterboxd.css"
+            ]
         }
     ],
     "permissions": [
