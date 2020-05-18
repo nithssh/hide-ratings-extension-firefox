@@ -33,7 +33,7 @@
         browser.storage.sync.set(data, function() 
         {
             
-            browser.tabs.getSelected(function (tab) 
+            browser.tabs.query({active: true}, function (tab) 
                 {
                     if (tab && tab.url) 
                     {
