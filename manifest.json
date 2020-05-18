@@ -3,6 +3,7 @@
     "name": "Hide ratings (IMDB,Goodreads...)",
     "description": "Prevents you from being influenced by others by hiding the rating bars from IMDB, Goodreads, MyAnimeList and Letterboxd.",
     "version": "1.6.0f",
+
     "browser_action": {
         "default_icon": "images/icon64.png",
         "default_popup": "options.html"
@@ -212,6 +213,7 @@
                 "*://www.google.co.zm/search*",
                 "*://www.google.co.zw/search*"
             ],
+
             "js": [
                 "js/common.js",
                 "js/google.js"
@@ -219,6 +221,7 @@
             "css": [
                 "css/google.css"
             ],
+
             "run_at": "document_end"
         },
         {
