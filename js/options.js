@@ -1,12 +1,13 @@
-;(function () {
+; (function () {
     var statusVisibilityTimeoutId = null;
 
     // List with available rating sources and their default toggle values
     var sourcesDefault = {
-        'imdb':       false,
-        'mal':        false,
-        'goodreads':  false,
-        'letterboxd': false
+        'imdb': false,
+        'mal': false,
+        'goodreads': false,
+        'letterboxd': false,
+        'google': false,
     };
 
     // Checks if browser storage is defined
@@ -30,17 +31,12 @@
             data[name] = !document.getElementById(name + '_toggle').classList.contains('active');
         }
 
-        browser.storage.sync.set(data, function() 
-        {
-            
-            browser.tabs.query({active: true}, function (tab) 
-                {
-                    if (tab && tab.url) 
-                    {
-                        browser.tabs.sendMessage(tab.id, data);
-                    }
+        browser.storage.sync.set(data, function () {
+            browser.tabs.query({}, function (tabs) {
+                for (let tab of tabs) {
+                    browser.tabs.sendMessage(tab.id, data);
                 }
-            );
+            });
 
             // show status box
             var statusBox = document.getElementById('status_box');
@@ -66,25 +62,15 @@
         browser.storage.sync.get(keys, function (items) {
             var values = Object.assign({}, sourcesDefault, items);
 
-            for (let i in keys) {
-                let key = keys[i];
-
-                if (values[key] === true) {
-                    document.getElementById(key + '_toggle').classList.remove('active');
-                } else {
-                    document.getElementById(key + '_toggle').classList.add('active');
-                }
+            for (let key of keys) {
+                document.getElementById(key + '_toggle').classList.toggle('active', !values[key]);
             }
         });
     }
 
     // Switch on/off single toggle item
     function toggle(el) {
-        if (el.classList.contains('active')) {
-            el.classList.remove('active');
-        } else {
-            el.classList.add('active');
-        }
+        el.classList.toggle('active');
 
         saveToggleValues();
     }
@@ -93,7 +79,7 @@
         document.getElementById(name + '_toggle').addEventListener('click', function (e) {
             e.preventDefault();
             toggle(this);
-         }, false);
+        }, false);
     }
 
     document.addEventListener('DOMContentLoaded', restoreToggleValues);
