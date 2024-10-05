@@ -1,6 +1,9 @@
 Hide ratings
 ======================================================================
 
+> [!IMPORTANT]
+> This fork is no longer maintained. Firefox releases are directly based on the [upstream](https://github.com/ganigeorgiev/hide-ratings-extension) chrome extension for the better, using the [web-ext](https://github.com/mozilla/web-ext) tool.
+
 Prevents you from being influenced by others by hiding the rating bars from Google Knowledge panels, IMDB, Goodreads, MyAnimeList and Letterboxd.
 
 #### Installation
